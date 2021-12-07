@@ -1,0 +1,58 @@
+<!Doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Simulador Credinómina Empleados BdV</title>
+		<link rel="stylesheet" href="css\bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+		<link rel="stylesheet" type="text/css" href="./css/font-awesome.min.css">
+		<link rel="stylesheet" type="text/css" href="./css/styles.css">
+		<link rel="shortcut icon" href="./img/icon.PNG">
+	</head>
+	<body>
+		
+		<div class="jumbotron text-center color-banco">
+			<img src="./assets/icon.png" class="img-thumbnail">
+			<h1>Simulador Credinómina Empleados BdV</h1>
+		</div>
+
+		<div class="container forma">
+			<form method="post" action="/empleado">
+			<div class="form-group">
+				<label for="ci">Ingrese Cédula de Identidad</label>
+				<div class="input-group">
+					<div class="dropdown input-group-prepend">
+						  <button class="btn btn-secondary dropdown-toggle btn-outline-secondary" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">-</button>
+						  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+									<label class="dropdown-item"><input type="radio" name="nac" href="#" id="ve" value="V">V</label>
+									<label class="dropdown-item"><input type="radio" name="nac" href="#" id="ex" value="E">E</label>
+							</div>
+					</div>
+					<input class="form-control" type="text" name="ci" id="ci" placeholder="..." maxlength="8">
+					<div class="input-group-append">
+						<i class="fa fa-search input-group-text"></i>
+					</div>
+				</div>
+			</div>			
+			<div class="form-group text-center">
+				<button class="btn btn-banco" type="submit" id="consultar" value="send" name="consultar"><i class="fa fa-calculator"></i> Calcular</button>
+			</div>
+			</form>
+		</div>
+
+		<div class="container text-center">
+			<a href="/"><button class="btn btn-banco mt-4"><i class="fa fa-home"></i> Página principal</button></a>
+		</div>
+
+
+		<footer class="page-footer">
+			<div>
+				<p id="foot">Gerencia Admisión Crédito Estandarizado - Banco de Venezuela</p>
+			</div>
+		</footer>
+
+		<script src="js/jquery.slim.min.js"></script>
+    	<script src="js/popper.min.js"></script>
+		<script src="js/bootstrap.min.js"></script>
+    	<script type="text/javascript" src="js/script.js"></script>
+	</body>
+</html>

@@ -1,0 +1,40 @@
+<!Doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Simulador Credinómina Empleados BdV</title>
+		<link rel="stylesheet" href="./css\bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+		<link rel="stylesheet" type="text/css" href="./css/font-awesome.min.css">
+		<link rel="stylesheet" type="text/css" href="./css/styles.css">
+		<link rel="shortcut icon" href="./img/icon.PNG">
+	</head>
+	<body>
+
+		<div class="jumbotron text-center color-banco">
+			<img src="./assets/icon.png" class="img-thumbnail">
+			<h1>Simulador Credinómina Empleados BdV</h1>
+		</div>
+
+		<div class="container">
+			<div class="row text-center">
+				<h2 class="text-center">Cédula no encontrada</h2>
+				<h5 class=" mt-4 ml-4 mr-4">Lo sentimos, la cédula <strong><%= data %></strong> no pudo ser encontrada, por favor revisar que la introdujo bien e intente de nuevo. Gracias.</h5>
+			</div>
+			<div class="mt-4">
+				<a href="/simulador_empleado"><button class="btn btn-banco">Volver al inicio</button></a>
+				<a href="/"><button class="btn btn-banco"><i class="fa fa-home"></i> Página principal</button></a>
+			</div>
+		</div>
+
+		<footer class="page-footer">
+			<div>
+				<p id="foot">Gerencia Admisión Crédito Estandarizado - Banco de Venezuela</p>
+			</div>
+		</footer>
+
+		<script src="js/jquery.slim.min.js"></script>
+    	<script src="js/popper.min.js"></script>
+		<script src="js/bootstrap.min.js"></script>
+		<script type="text/javascript" src="js/script.js"></script>
+	</body>
+</html>

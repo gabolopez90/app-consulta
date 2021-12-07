@@ -1,0 +1,45 @@
+.color-banco{
+	background-color: #D8130D;
+	color: white;	
+}
+
+.forma{
+	width: 30%;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+[type='radio'] {
+visibility: hidden;
+}
+
+body{
+	color: #556F90;
+}
+
+.btn-banco{
+	background-color: #556F90;
+	color: white;
+}
+
+.btn-banco:hover{
+	background-color: #D8130D;
+}
+
+.card-banco{
+	background-color: #556F90;
+	color: white;
+}
+footer{
+	position:fixed;
+   	bottom:0;   	
+}
+#foot{
+	margin-left: 30vw;
+	margin-right: 30vw;
+}
+
+.img-thumbnail{
+	height: 50px;
+	width: 50px;
+}

@@ -1,0 +1,71 @@
+<!Doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Simulador Credinómina Empleados BdV</title>
+		<link rel="stylesheet" href="css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+		<link rel="stylesheet" type="text/css" href="./css/font-awesome.min.css">
+		<link rel="stylesheet" type="text/css" href="./css/styles.css">
+		<link rel="shortcut icon" href="./img/icon.PNG">
+	</head>
+	<body>
+			
+		<div class="container-fluid text-center color-banco">
+			<img src="./assets/icon.png" class="img-thumbnail">
+			<h1>Simulador Credinómina Empleados BdV</h1>
+		</div>
+
+		<div class="container">
+			<div class="row">
+				<div class="offset-2 col-8">
+					<div class="card border-secondary">
+						<h3 class="card-header card-banco text-center"><span id="nombre"><%= data.NOMBRE %></span></h3>
+						<div class="card-body">
+							<p><strong>Cédula: </strong><span id="ci"><%= data.CEDULA %></span></p>
+							<p><strong>Cargo: </strong><%= data.CARGO %></p>
+							<p><strong>Salario: </strong>Bs. <span id="salario"><%= data.SALARIO %></span></p>
+							<p><strong>Fecha de Ingreso: </strong><%= data.FECHA_ING %></p>							
+							<p><strong>% de endeudamiento: </strong><span id="endeudamiento"><%= Math.floor(Number(data.ENDEUDAMIENTO)*100)  %> %</span> </p>
+							<p><strong>Otras deducciones mensuales: Bs.</strong> <span id="deducciones"><%= data.DEDUCCIONES %></span></p>
+							<p><strong>Pago mínimo consolidado: Bs.</strong> <span id="pago-min-viejo"><%= data.CARGAS_TOTALES.toFixed(2) %></span></p>
+							<h5 class="text-center">Créditos al Consumo</h5>
+							<p><strong>Saldo credinómina consolidado: </strong>Bs. <span id="saldo_credinomina"><%= data.SALDO_CREDINOMINA %></span></p>
+							<p><strong>Cuota Hipotecario Cotitular: </strong>Bs. <span id="hipotecario"><%= data.CUOTA_HIPOTECARIO %></span></p>
+							<h5 class="text-center">Tarjeta de Crédito</h5>
+							<p><strong>Pago mínimo TdC consolidado: </strong>Bs. <%= data.PAGO_MIN_TDC_SELECT.toFixed(2) %></p>
+							<p><strong>TdC actual: </strong>Bs. <%= data.TDC %></p>
+							<p><strong>Límite TdC por cargo: </strong>Bs. <%= data.LIMITE_TDC %></p>
+							<h4 class="text-center"><strong>Decisión: </strong> <% if (Number(data.APROBADO_DEF) !== 0 ){ %>
+								<span class="badge badge-success" id="decision">Aprobado</span> 
+								<% } else { %>
+								<span class="badge badge-danger" id="decision">Negado</span> 
+								<% } %>
+							</h4>
+							<h4 class="text-center"><strong>Observación: </strong> <% if (Number(data.APROBADO_DEF) !== 0 ){ %>
+								<span class="badge badge-success" id="observacion"></span> 
+								<% } else { %>
+								<span class="badge badge-danger" id="observacion"><%= data.DETALLE_NEGADO %></span> 
+								<% } %>
+							</h4>														
+							
+							<h4 class="text-center"><strong>Monto Aprobado:</strong> <span class="badge badge-info"> Bs. 
+								<span id="monto_aprobado_empleado"><%= data.APROBADO_DEF %></span>								
+							</span></h4>
+						</div>
+						<div class="card-footer text-center">
+							<p>Gerencia Admisión Crédito Estandarizado - Banco de Venezuela</p>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="text-center mt-4 mb-4">
+				<a href="/simulador_empleado"><button class="btn btn-banco"><i class="fa fa-arrow-left"></i> Volver al inicio</button></a>				
+			</div>
+		</div>
+
+		<script src="js/jquery.min.js"></script>
+	    <script src="js/popper.min.js"></script>
+		<script src="js/bootstrap.min.js"></script>
+	    <script type="text/javascript" src="js/script.js"></script>
+	</body>
+</html>
