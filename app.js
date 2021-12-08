@@ -71,18 +71,20 @@ let sql = `SELECT *
 			}	
 				//Agrega información de tdc actual al objeto empleado
 				empleado.TDC = tdc.MONTO_LIQUIDADO;
+				
 				//Si el empleado tiene marca negativa, buscar la descripción
 				if(empleado.CONSOLIDADO === 1){
+
 					//Query a acr cliente para traer descripción de marca negativa
 					let sqlNegado = `SELECT CONSOLIDADO_DESC
-           FROM CONSOLIDADO_ACR_CLIENTE
-           WHERE CEDULA  = ?`;
+           							FROM CONSOLIDADO_ACR_CLIENTE
+           							WHERE CEDULA  = ?`;
 					const negado_detalle = db.get(sqlNegado,cedula,(err,negado)=>{
 						if(err){
 							return console.log(err);
 						}
 						//Agrega descripcion de marca negativa a objeto empleado
-						empleado.DETALLE_NEGADO = negado.CONSOLIDADO_DESC;
+						empleado.DETALLE_NEGADO = negado.CONSOLIDADO_DESC;						
 						res.render("empleado", {data: empleado});
 					});
 				}

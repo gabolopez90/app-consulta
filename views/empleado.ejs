@@ -35,21 +35,26 @@
 							<p><strong>Pago mínimo TdC consolidado: </strong>Bs. <%= data.PAGO_MIN_TDC_SELECT.toFixed(2) %></p>
 							<p><strong>TdC actual: </strong>Bs. <%= data.TDC %></p>
 							<p><strong>Límite TdC por cargo: </strong>Bs. <%= data.LIMITE_TDC %></p>
-							<h4 class="text-center"><strong>Decisión: </strong> <% if (Number(data.APROBADO_DEF) !== 0 ){ %>
+							<h4 class="text-center"><strong>Decisión: </strong> <% if (data.DETALLE_NEGADO === null){ %>
 								<span class="badge badge-success" id="decision">Aprobado</span> 
 								<% } else { %>
 								<span class="badge badge-danger" id="decision">Negado</span> 
 								<% } %>
 							</h4>
-							<h4 class="text-center"><strong>Observación: </strong> <% if (Number(data.APROBADO_DEF) !== 0 ){ %>
+							<h4 class="text-center"><strong>Observación: </strong> <% if (data.DETALLE_NEGADO === null){ %>
 								<span class="badge badge-success" id="observacion"></span> 
 								<% } else { %>
 								<span class="badge badge-danger" id="observacion"><%= data.DETALLE_NEGADO %></span> 
 								<% } %>
 							</h4>														
 							
-							<h4 class="text-center"><strong>Monto Aprobado:</strong> <span class="badge badge-info"> Bs. 
-								<span id="monto_aprobado_empleado"><%= data.APROBADO_DEF %></span>								
+							<h4 class="text-center"><strong>Monto Aprobado:</strong> <% if(data.DETALLE_NEGADO === null){ %>
+								<span class="badge badge-info"> Bs. 
+								<span id="monto_aprobado_empleado"><%= data.APROBADO_DEF %></span>
+								<% } else { %>
+								<span class="badge badge-danger"> Bs. 
+								<span id="monto_aprobado_empleado"> 0 </span>
+								<% } %>
 							</span></h4>
 						</div>
 						<div class="card-footer text-center">
