@@ -70,8 +70,12 @@ let sql = `SELECT *
 				return console.log(err);
 			}	
 				//Agrega información de tdc actual al objeto empleado
-				empleado.TDC = tdc.MONTO_LIQUIDADO;
 				
+				if(empleado.TDC == undefined){
+					empleado.TDC = 0;
+				}else{
+					empleado.TDC = tdc.MONTO_LIQUIDADO;
+				};
 				//Si el empleado tiene marca negativa, buscar la descripción
 				if(empleado.CONSOLIDADO === 1){
 
@@ -90,6 +94,7 @@ let sql = `SELECT *
 				}
 				else{
 					//Si está aprobado, crea la página
+					console.log(empleado);
 					res.render("empleado", {data: empleado});	
 				}
 			});

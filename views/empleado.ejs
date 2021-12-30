@@ -26,7 +26,7 @@
 							<p><strong>Salario: </strong>Bs. <span id="salario"><%= data.SALARIO %></span></p>
 							<p><strong>Fecha de Ingreso: </strong><%= data.FECHA_ING %></p>							
 							<p><strong>% de endeudamiento: </strong><span id="endeudamiento"><%= Math.floor(Number(data.ENDEUDAMIENTO)*100)  %> %</span> </p>
-							<p><strong>Otras deducciones mensuales: Bs.</strong> <span id="deducciones"><%= data.DEDUCCIONES %></span></p>
+							<p><strong>Otras deducciones mensuales: Bs.</strong> <span id="deducciones"><%= data.DEDUCCIONES*2 %></span></p>
 							<p><strong>Pago mínimo consolidado: Bs.</strong> <span id="pago-min-viejo"><%= data.CARGAS_TOTALES.toFixed(2) %></span></p>
 							<h5 class="text-center">Créditos al Consumo</h5>
 							<p><strong>Saldo credinómina consolidado: </strong>Bs. <span id="saldo_credinomina"><%= data.SALDO_CREDINOMINA %></span></p>
