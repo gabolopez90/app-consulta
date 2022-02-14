@@ -1,0 +1,86 @@
+<!Doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>App Consulta Simuladores</title>
+		<link rel="stylesheet" href="css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+		<link rel="stylesheet" type="text/css" href="./css/font-awesome.min.css">
+		<link rel="stylesheet" type="text/css" href="./css/styles.css">
+		<link rel="shortcut icon" href="./img/icon.PNG">
+	</head>
+	<body>
+		
+
+		<div class="container-fluid">
+			<div class="row">
+				<div class="container-fluid text-center color-banco">
+					<img src="./assets/icon.png" class="img-thumbnail">
+					<h1>App Consulta Simuladores</h1>
+				</div>
+
+				<div class="text-center m-4">
+					<a href="/consulta"><button class="btn btn-banco"><i class="fa fa-arrow-left"></i> Volver al inicio</button></a>				
+				</div>
+
+				<div class="forma mt-4">
+					<div class="input-group">						
+							<input class="form-control" type="text" name="myInput" placeholder="..." contenteditable="true" id="myInput">
+							<div class="input-group-append">
+								<i class="fa fa-search input-group-text"></i>
+							</div>
+					</div>	
+				</div>
+					
+
+				<div class="">
+					<div class="">
+						<table class="table table-bordered table-striped m-2 table-sm"> 
+							<thead class="card-banco ">
+							    <tr>
+							      <th scope="col" class="align-middle text-center">NM</th>
+							      <th scope="col" class="align-middle text-center">Cedula</th>
+							      <th scope="col" class="align-middle text-center">Nombre</th>
+							      <th scope="col" class="align-middle text-center">Fecha/Hora</th>
+								  <th scope="col" class="align-middle text-center">Monto Aprobado</th>
+							      <th scope="col" class="align-middle text-center">Observación</th>
+							      <th scope="col" class="align-middle text-center">Cargas BdV</th>
+							      <th scope="col" class="align-middle text-center">Ingresos</th>
+							      <th scope="col" class="align-middle text-center">Otras Cargas</th>
+							      <th scope="col" class="align-middle text-center">Califica Archivo</th>							      
+							    </tr>
+							</thead>
+							<tbody id="myTable">
+								<% data.forEach((item) => { %>
+							    <tr>
+							      <td class="align-middle text-center"><%= item.NM %></td>
+							      <td class="align-middle text-center"><%= item.CEDULA %></td>
+							      <td class="align-middle text-center"><%= item.NOMBRE %></td>
+							      <td class="align-middle text-center"><%= item.FECHA_HORA %></td>
+							      <td class="align-middle text-center"><%= item.MONTO_APROBADO %></td>
+							      <td class="align-middle text-center"><%= item.OBSERVACION %></td>
+							      <td class="align-middle text-center"><%= item.CARGAS_BDV %></td>
+							      <td class="align-middle text-center"><%= item.INGRESOS %></td>
+							      <td class="align-middle text-center"><%= item.OTRAS_CARGAS %></td>
+							      <td class="align-middle text-center"><%= item.CALIFICA_ARCHIVO %></td>							      
+							    </tr>
+							    <% }); %>
+							</tbody>
+						</table>
+						
+						<div class="card-footer text-center">
+							<p>Gerencia Admisión Crédito Estandarizado - Banco de Venezuela</p>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="text-center mt-4 mb-4">
+				<a href="/consulta"><button class="btn btn-banco"><i class="fa fa-arrow-left"></i> Volver al inicio</button></a>				
+			</div>
+		</div>
+
+		<script src="js/jquery.min.js"></script>
+	    <script src="js/popper.min.js"></script>
+		<script src="js/bootstrap.min.js"></script>
+	    <script type="text/javascript" src="js/script.js"></script>
+	</body>
+</html>

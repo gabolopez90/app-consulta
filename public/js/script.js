@@ -7,6 +7,31 @@ if(checkApr > checkSol){
 	$("#monto_aprobado_empleado").text(checkSol);
 }
 
+// Oculta NM y CI hasta ser seleccionadas
+$("#cedula").hide()
+$("#empleado").hide()
+$("#consultar").hide()
+
+// Selecciona tipo de consulta
+$("#NM").click(()=>{
+	$("#tipo-consulta").text("NM");
+	$("#empleado").show()
+	$("#consultar").show()
+	$("#cedula").hide()
+});
+
+$("#NM2").click(()=>{
+	$("#elegirnm").text("NM");
+});
+
+
+$("#CI").click(()=>{
+	$("#tipo-consulta").text("CI");
+	$("#cedula").show()
+	$("#consultar").show()
+	$("#empleado").hide()
+});
+
 // Selecciona nacionalidad
 $("#ve").click(()=>{
 	$("#dropdownMenuButton").text("V");
@@ -16,19 +41,26 @@ $("#ex").click(()=>{
 	$("#dropdownMenuButton").text("E");
 });
 
-// Recalculo para simulador empleados
-$("#sobregiro").click(()=>{
-	$("#nuevo-pago-min-manual").hide();
-	$("#nuevo-pago-min").show();
+// Selecciona simulador
+$("#Consumo").click(()=>{
+	$("#tipo-simulador").text("Consumo");
 });
 
-$("#pago_min_manual").click(()=>{
-	$("#nuevo-pago-min").hide();
-	$("#nuevo-pago-min-manual").show();
+$("#TDC").click(()=>{
+	$("#tipo-simulador").text("TDC");
 });
 
 
+// Barra filtradora
 
+$(document).ready(function(){
+  $("#myInput").on("keyup", function() {
+    var value = $(this).val().toLowerCase();    
+    $("#myTable tr").filter(function() {
+      $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+    });
+  });
+});
 
 // Funcion para mostrar la fecha actual en formato dd/mm/yyyy
 function dia(){

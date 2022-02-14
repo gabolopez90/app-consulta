@@ -1,12 +1,12 @@
 {
-  "name": "simulador-creditos",
+  "name": "app-consulta",
   "version": "1.0.0",
-  "description": "Simulador para evaluar credinómina de empleados BdV",
+  "description": "App para consultar la base de datos",
   "main": "main.js",
   "scripts": {
     "start": "electron .",
     "postinstall": "electron-builder install-app-deps",
-    "pack": "electron-builder -w"
+    "pack": "electron-builder -w --x64 --ia32"
   },
   "author": "Gabriel Lopez Olivo <gabolopez1990@gmail.com>",
   "license": "ISC",
@@ -20,7 +20,7 @@
     "sqlite3": "^5.0.2"
   },
   "build": {
-    "appId": "credinomina",
+    "appId": "consulta",
     "asar": true,
     "win": {
       "target": "NSIS",
@@ -33,7 +33,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/gabolopez90/app-bdv.git"
+    "url": "git+https://github.com/gabolopez90/app-consulta.git"
   },
   "keywords": [
     "nodejs",
@@ -41,7 +41,7 @@
     "sqlite"
   ],
   "bugs": {
-    "url": "https://github.com/gabolopez90/app-bdv/issues"
+    "url": "https://github.com/gabolopez90/app-consulta/issues"
   },
-  "homepage": "https://github.com/gabolopez90/app-bdv#readme"
+  "homepage": "https://github.com/gabolopez90/app-consulta#readme"
 }

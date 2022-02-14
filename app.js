@@ -26,83 +26,91 @@ app.use('/css', express.static(__dirname + '/node_modules/bootstrap/dist/css'));
 app.use('/css', express.static(__dirname + '/node_modules/font-awesome/css')); // redirect CSS font-awesome
 app.use('/fonts', express.static(__dirname +'/node_modules/font-awesome/fonts')) // redirect CSS font-awesome
 
-app.get("/simulador_empleado", (req,res,next)=>{
-	res.render("simulador_empleado");
+app.get("/consulta", (req,res,next)=>{
+	res.render("consulta");
 });
 
 // Recibe CI empleado y consulta la BD
-app.post("/empleado", urlencodedParser, (req,res,next)=>{		
-	var nac = req.body.nac;
-	var ci = req.body.ci;	
-
-	//Si la cedula tiene menos de 8 digitos rellena con 0 a la izquierda, para el alfanumerico 9
-	if(ci.length<8){
-		while(ci.length<8){
-			ci = "0"+ci;
+app.post("/consultar", urlencodedParser, (req,res,next)=>{		
+	var tipo = req.body.tipo;
+	var simulador = req.body.simu;	
+	if(tipo == "CI"){
+		var nac = req.body.nac;
+		var ci = req.body.ci;
+		if(ci.length<8){
+			while(ci.length<8){
+				ci = "0"+ci;
+			}
 		}
+		//Une la nacionalidad con la cedula creando una variable alfanumerica 9 para la comparacion
+		var cedula = nac + ci;
+
+	}else{
+		var nm = req.body.NM1;
+		if(nm.length<5){
+			while(nm.length<5){
+				nm = "0"+nm;
+			}
+		}
+		var cedula = "NM"+nm;
 	}
-	//Une la nacionalidad con la cedula creando una variable alfanumerica 9 para la comparacion
-	var cedula = nac + ci;
 
-//Conecta a la base de datos
-let db = new sqlite3.Database('A:/Tarjetas_de_Credito/Simuladores/CREDITO_DB.db');
+	let db;
+	let sql;
 
-//Query a nomina BdV para traer la información del empleado
-let sql = `SELECT *
-           FROM NOMINA_BDV
-           WHERE CEDULA  = ?`;
-	
-	const empleado = db.get(sql,cedula,(err,empleado)=>{
+	if(simulador == "Consumo"){
+		db = new sqlite3.Database('//Serv_p02_27emm/Servidor_GG_Admision/Consumo/Simuladores/CREDITO_DB.db');
+		if(tipo == "CI"){
+			sql = `SELECT *
+           FROM ARCHIVO_CREDISOCIAL
+           WHERE CEDULA  = ?`;	
+		}else{
+			sql = `SELECT *
+           FROM ARCHIVO_CREDISOCIAL
+           WHERE NM  = ?`;
+		}
+
+
+		const empleado = db.all(sql,cedula,(err,rows)=>{
 		if(err){
 			return console.log(err);
 		}
 		// Si no es empleado, devuelve una pagina de error, si es empleado muestra la informacion
-		if(empleado === undefined){
+		if(rows[0] === undefined){
 			res.render("no_encontrado", {data: cedula});
 		}
 		else{
-			// Query a tabla ACR para traer el límite actual de TDC
-			let sqltdc = `SELECT MONTO_LIQUIDADO
-           FROM CONSOLIDADO_ACR
-           WHERE PRODUCTO = "TDC" AND CEDULA  = ?`;
-  		const tdc = db.get(sqltdc,cedula,(err,tdc)=>{
-			if(err){
-				return console.log(err);
-			}	
-				//Agrega información de tdc actual al objeto empleado
-				
-				if(empleado.TDC == undefined){
-					empleado.TDC = 0;
-				}else{
-					empleado.TDC = tdc.MONTO_LIQUIDADO;
-				};
-				//Si el empleado tiene marca negativa, buscar la descripción
-				if(empleado.CONSOLIDADO === 1){
-
-					//Query a acr cliente para traer descripción de marca negativa
-					let sqlNegado = `SELECT CONSOLIDADO_DESC
-           							FROM CONSOLIDADO_ACR_CLIENTE
-           							WHERE CEDULA  = ?`;
-					const negado_detalle = db.get(sqlNegado,cedula,(err,negado)=>{
-						if(err){
-							return console.log(err);
-						}
-						//Agrega descripcion de marca negativa a objeto empleado
-						empleado.DETALLE_NEGADO = negado.CONSOLIDADO_DESC;						
-						res.render("empleado", {data: empleado});
-					});
-				}
-				else{
-					//Si está aprobado, crea la página
-					console.log(empleado);
-					res.render("empleado", {data: empleado});	
-				}
-			});
+			res.render("consumo", {data: rows});
 		}
 	});
-	
-	// Cierra la conexión con la BD
+
+	}else{
+		db = new sqlite3.Database('//Serv_p02_27emm/Servidor_GG_Admision/Tarjetas_de_Credito/Simuladores/CREDITO_DB.db');
+		if(tipo == "CI"){
+			sql = `SELECT *
+           FROM ARCHIVO_TDC
+           WHERE CEDULA  = ?`;	
+		}else{
+			sql = `SELECT *
+           FROM ARCHIVO_TDC
+           WHERE NM  = ?`;
+		}
+		const empleado = db.all(sql,cedula,(err,rows)=>{		
+			if(err){
+				return console.log(err);
+			}
+			// Si no es empleado, devuelve una pagina de error, si es empleado muestra la informacion		
+			if(rows[0] === undefined){
+				res.render("no_encontrado", {data: cedula});
+			}
+			else{			
+				res.render("tdc", {data: rows});
+			}
+		});
+	}	
+ 
 	db.close();
+
 });
 
 //Inicia el servidor en el puerto 8080
