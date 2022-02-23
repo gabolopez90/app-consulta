@@ -44,9 +44,11 @@
 								  <th scope="col" class="align-middle text-center">Monto Aprobado</th>
 							      <th scope="col" class="align-middle text-center">Observación</th>
 							      <th scope="col" class="align-middle text-center">Cargas BdV</th>
-							      <th scope="col" class="align-middle text-center">Ingresos</th>
 							      <th scope="col" class="align-middle text-center">Otras Cargas</th>
-							      <th scope="col" class="align-middle text-center">Califica Archivo</th>							      
+							      <th scope="col" class="align-middle text-center">Ingresos BdV</th>
+							      <th scope="col" class="align-middle text-center">Otros Ingresos</th>
+							      <th scope="col" class="align-middle text-center">Ingresos USD</th>
+							      <th scope="col" class="align-middle text-center">Califica Archivo</th>
 							    </tr>
 							</thead>
 							<tbody id="myTable">
@@ -59,8 +61,10 @@
 							      <td class="align-middle text-center"><%= item.MONTO_APROBADO %></td>
 							      <td class="align-middle text-center"><%= item.OBSERVACION %></td>
 							      <td class="align-middle text-center"><%= item.CARGAS_BDV %></td>
-							      <td class="align-middle text-center"><%= item.INGRESOS %></td>
 							      <td class="align-middle text-center"><%= item.OTRAS_CARGAS %></td>
+							      <td class="align-middle text-center"><%= item.INGRESOS_BDV %></td>
+							      <td class="align-middle text-center"><%= item.OTROS_INGRESOS %></td>
+							      <td class="align-middle text-center"><%= item.INGRESOS_USD %></td>							      
 							      <td class="align-middle text-center"><%= item.CALIFICA_ARCHIVO %></td>							      
 							    </tr>
 							    <% }); %>
