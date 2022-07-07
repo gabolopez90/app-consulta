@@ -1,3 +1,9 @@
+@font-face{
+	font-family: "Nunito";
+	src:  url("../assets/nunito.ttf") format("truetype");
+}
+
+
 .color-banco{
 	background-color: #D8130D;
 	color: white;	
@@ -14,8 +20,8 @@ visibility: hidden;
 }
 
 body{
-	color: #556F90;
-	min-width: fit-content;
+	color: #556F90;	
+	font-family: "Nunito";
 }
 
 .btn-banco{
@@ -31,13 +37,13 @@ body{
 	background-color: #556F90;
 	color: white;
 }
-footer{
-	position:fixed;
-   	bottom:0;   	
+.contenido{
+	min-height: calc(100vh - 70px);
 }
-#foot{
-	margin-left: 30vw;
-	margin-right: 30vw;
+
+footer{
+	height: 50px;
+	text-align: center;	
 }
 
 .img-thumbnail{
