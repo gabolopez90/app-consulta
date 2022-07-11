@@ -3,9 +3,8 @@
 	src:  url("../assets/nunito.ttf") format("truetype");
 }
 
-
-.color-banco{
-	background-color: #D8130D;
+.color-banco{	
+	background-color: #2E73C7;
 	color: white;	
 }
 
@@ -24,17 +23,17 @@ body{
 	font-family: "Nunito";
 }
 
-.btn-banco{
-	background-color: #556F90;
+.btn-banco{	
+	background-color: #EA0654;
 	color: white;
 }
 
-.btn-banco:hover{
-	background-color: #D8130D;
+.btn-banco:hover{	
+	background-color: #2E73C7;
 }
 
-.card-banco{
-	background-color: #556F90;
+.card-banco{	
+	background-color: #2E73C7;
 	color: white;
 }
 .contenido{
@@ -49,4 +48,13 @@ footer{
 .img-thumbnail{
 	height: 50px;
 	width: 50px;
+}
+
+table{
+	font-size: 12px;
+}
+
+.logito{
+	height: 75px;
+	width: 75px;
 }

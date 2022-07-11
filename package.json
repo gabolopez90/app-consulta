@@ -24,7 +24,7 @@
     "asar": true,
     "win": {
       "target": "NSIS",
-      "icon": "build/icon.png"
+      "icon": "build/icon.ico"
     }
   },
   "devDependencies": {
