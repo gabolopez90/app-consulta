@@ -9,6 +9,19 @@ var path = require("path");
 var os = require('os');
 var fs = require("fs");
 var sqlite3 = require('sqlite3').verbose();
+const escritorio = require("./dir.js")
+
+
+var direccion = '';
+try {
+  if (fs.existsSync('//Serv_p02_27emm/Servidor_GG_Admision/Consumo/Simuladores/CREDITO_DB.db')) {
+    direccion = '//Serv_p02_27emm/Servidor_GG_Admision/Consumo/Simuladores/CREDITO_DB.db';
+  }
+} catch(err) {
+  //direccion = path.join(escritorio,'/Modulo Consumo - Regionales/CREDITO_DB.db');
+  direccion = path.join(escritorio,'/Modulo Contingencia/CREDITO_DB.db');
+}
+
 
 //Obtiene nm del usuario
 var user = os.userInfo().username;
@@ -58,8 +71,8 @@ app.post("/consultar", urlencodedParser, (req,res,next)=>{
 	let db;
 	let sql;
 
-	if(simulador == "Consumo"){
-		db = new sqlite3.Database('//Serv_p02_27emm/Servidor_GG_Admision/Consumo/Simuladores/CREDITO_DB.db');
+	if(simulador == "Consumo"){		
+		db = new sqlite3.Database(direccion);
 		if(tipo == "CI"){
 			sql = `SELECT *
            FROM ARCHIVO_CREDISOCIAL
@@ -85,7 +98,8 @@ app.post("/consultar", urlencodedParser, (req,res,next)=>{
 	});
 
 	}else{
-		db = new sqlite3.Database('//Serv_p02_27emm/Servidor_GG_Admision/Tarjetas_de_Credito/Simuladores/CREDITO_DB.db');
+		//db = new sqlite3.Database('//Serv_p02_27emm/Servidor_GG_Admision/Tarjetas_de_Credito/Simuladores/CREDITO_DB.db');
+		db = new sqlite3.Database(direccion);
 		if(tipo == "CI"){
 			sql = `SELECT *
            FROM ARCHIVO_TDC
