@@ -1,12 +1,3 @@
-// Simulador empleados
-
-// El monto aprobado no puede ser mayor al solicitado
-var checkSol = parseInt($("#solicitado").text().replace(".",""));
-var checkApr = parseInt($("#monto_aprobado_empleado").text().replace(".",""));
-if(checkApr > checkSol){
-	$("#monto_aprobado_empleado").text(checkSol);
-}
-
 // Oculta NM y CI hasta ser seleccionadas
 $("#cedula").hide()
 $("#empleado").hide()
@@ -23,7 +14,6 @@ $("#NM").click(()=>{
 $("#NM2").click(()=>{
 	$("#elegirnm").text("NM");
 });
-
 
 $("#CI").click(()=>{
 	$("#tipo-consulta").text("CI");
@@ -50,9 +40,7 @@ $("#TDC").click(()=>{
 	$("#tipo-simulador").text("TDC");
 });
 
-
 // Barra filtradora
-
 $(document).ready(function(){
   $("#myInput").on("keyup", function() {
     var value = $(this).val().toLowerCase();    

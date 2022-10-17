@@ -1,6 +1,6 @@
 //Declara los modulos utilizados
 //Express para manejar las conexiones, body-parser para manejar la data ingresada por el usuario y ejs para la presentacion
-//OS obtiene información del equipo del usuario
+//OS obtiene información del equipo del usuario, fs maneja archivos en la pc, path para ubicaciones
 var express = require("express");
 var app = express();
 const bodyParser = require("body-parser");
@@ -11,17 +11,16 @@ var fs = require("fs");
 var sqlite3 = require('sqlite3').verbose();
 const escritorio = require("./dir.js")
 
-
 var direccion = '';
-try {
-  if (fs.existsSync('//Serv_p02_27emm/Servidor_GG_Admision/Consumo/Simuladores/CREDITO_DB.db')) {
-    direccion = '//Serv_p02_27emm/Servidor_GG_Admision/Consumo/Simuladores/CREDITO_DB.db';
-  }
-} catch(err) {
-  //direccion = path.join(escritorio,'/Modulo Consumo - Regionales/CREDITO_DB.db');
-  direccion = path.join(escritorio,'/Modulo Contingencia/CREDITO_DB.db');
-}
 
+// Revisa si la base de datos esta local o en el servidor
+// Para operativos sin conexion a internet
+if (fs.existsSync(path.join(escritorio,'/Modulo Contingencia/CREDITO_DB.db'))) {
+    direccion = path.join(escritorio,'/Modulo Contingencia/CREDITO_DB.db');     
+  }
+  else{
+  	direccion = '//Serv_p02_27emm/Servidor_GG_Admision/Consumo/Simuladores/CREDITO_DB.db';
+  }
 
 //Obtiene nm del usuario
 var user = os.userInfo().username;
@@ -44,7 +43,7 @@ app.get("/consulta", (req,res,next)=>{
 });
 
 // Recibe CI empleado y consulta la BD
-app.post("/consultar", urlencodedParser, (req,res,next)=>{		
+app.post("/consultar", urlencodedParser, (req,res,next)=>{	
 	var tipo = req.body.tipo;
 	var simulador = req.body.simu;	
 	if(tipo == "CI"){
@@ -88,7 +87,6 @@ app.post("/consultar", urlencodedParser, (req,res,next)=>{
 		if(err){
 			return console.log(err);
 		}
-		// Si no es empleado, devuelve una pagina de error, si es empleado muestra la informacion
 		if(rows[0] === undefined){
 			res.render("no_encontrado", {data: cedula});
 		}
@@ -97,8 +95,7 @@ app.post("/consultar", urlencodedParser, (req,res,next)=>{
 		}
 	});
 
-	}else{
-		//db = new sqlite3.Database('//Serv_p02_27emm/Servidor_GG_Admision/Tarjetas_de_Credito/Simuladores/CREDITO_DB.db');
+	}else{		
 		db = new sqlite3.Database(direccion);
 		if(tipo == "CI"){
 			sql = `SELECT *
@@ -112,8 +109,7 @@ app.post("/consultar", urlencodedParser, (req,res,next)=>{
 		const empleado = db.all(sql,cedula,(err,rows)=>{		
 			if(err){
 				return console.log(err);
-			}
-			// Si no es empleado, devuelve una pagina de error, si es empleado muestra la informacion		
+			}			
 			if(rows[0] === undefined){
 				res.render("no_encontrado", {data: cedula});
 			}
