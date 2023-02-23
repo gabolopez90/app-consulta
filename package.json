@@ -1,6 +1,6 @@
 {
   "name": "app-consulta",
-  "version": "1.0.0",
+  "version": "2.0.1",
   "description": "App para consultar la base de datos",
   "main": "main.js",
   "scripts": {
